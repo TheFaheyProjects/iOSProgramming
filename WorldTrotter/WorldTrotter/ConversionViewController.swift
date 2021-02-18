@@ -27,12 +27,21 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // Loads interface file
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("ConversionViewController loaded its view.")
         
         updateCelsiusLabel()
     }
     
+    // Dark Mode
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    // Controls the number of digits held in Celsius
     let numberFormatter: NumberFormatter = {
         let nf = NumberFormatter()
         nf.numberStyle = .decimal
@@ -41,6 +50,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         return nf
     }()
     
+    // Updates the Celsius Label
     func updateCelsiusLabel() {
         if let celsiusValue = celsiusValue {
 //            celsiusLabel.text = "\(celsiusValue.value)"
@@ -50,6 +60,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // Allows only one decimal space
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
 //        print("Current text: \(textField.text)")
@@ -68,6 +79,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // Allows Fahrenheit to be inputted
     @IBAction func fahrenheitFieldEditingChanged(_ textField: UITextField) {
 //        if let text = textField.text, !text.isEmpty {
 //            celsiusLabel.text = text
@@ -81,6 +93,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // Dissmisses the keyboard
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         textField.resignFirstResponder()
     }
